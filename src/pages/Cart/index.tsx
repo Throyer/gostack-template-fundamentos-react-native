@@ -26,6 +26,7 @@ import {
 import { useCart } from '../../hooks/cart';
 
 import formatValue from '../../utils/formatValue';
+import { sunTotalItensOnCart, sunTotalOnCart } from '../../utils/sun';
 
 interface Product {
   id: string;
@@ -39,23 +40,19 @@ const Cart: React.FC = () => {
   const { increment, decrement, products } = useCart();
 
   function handleIncrement(id: string): void {
-    // TODO
+    increment(id);
   }
 
   function handleDecrement(id: string): void {
-    // TODO
+    decrement(id);
   }
 
   const cartTotal = useMemo(() => {
-    // TODO RETURN THE SUM OF THE QUANTITY OF THE PRODUCTS IN THE CART
-
-    return formatValue(0);
+    return formatValue(sunTotalOnCart(products));
   }, [products]);
 
   const totalItensInCart = useMemo(() => {
-    // TODO RETURN THE SUM OF THE QUANTITY OF THE PRODUCTS IN THE CART
-
-    return 0;
+    return sunTotalItensOnCart(products);
   }, [products]);
 
   return (
